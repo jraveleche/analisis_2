@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `AYD`.`Users` (
   `accessToken` VARCHAR(250) NULL,
   `activate` TINYINT(1) NOT NULL DEFAULT 0,
   `nombre` VARCHAR(50) NULL,
-  `apelildo` VARCHAR(50) NULL,
+  `apellido` VARCHAR(50) NULL,
   `fechaNac` VARCHAR(45) NULL,
   `role` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`, `activate`))
