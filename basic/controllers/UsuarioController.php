@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Oferta;
-use app\models\OfertaSearch;
+use app\models\Usuario;
+use app\models\UsuarioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OfertaController implements the CRUD actions for Oferta model.
+ * UsuarioController implements the CRUD actions for Usuario model.
  */
-class OfertaController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class OfertaController extends Controller
     }
 
     /**
-     * Lists all Oferta models.
+     * Lists all Usuario models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OfertaSearch();
+        $searchModel = new UsuarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,29 +45,30 @@ class OfertaController extends Controller
     }
 
     /**
-     * Displays a single Oferta model.
-     * @param integer $id
+     * Displays a single Usuario model.
+     * @param integer $idusuario
+     * @param integer $empresa_idempresa
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($idusuario, $empresa_idempresa)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($idusuario, $empresa_idempresa),
         ]);
     }
 
     /**
-     * Creates a new Oferta model.
+     * Creates a new Usuario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Oferta();
+        $model = new Usuario();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idoferta]);
+            return $this->redirect(['view', 'idusuario' => $model->idusuario, 'empresa_idempresa' => $model->empresa_idempresa]);
         }
 
         return $this->render('create', [
@@ -76,18 +77,19 @@ class OfertaController extends Controller
     }
 
     /**
-     * Updates an existing Oferta model.
+     * Updates an existing Usuario model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $idusuario
+     * @param integer $empresa_idempresa
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($idusuario, $empresa_idempresa)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($idusuario, $empresa_idempresa);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idoferta]);
+            return $this->redirect(['view', 'idusuario' => $model->idusuario, 'empresa_idempresa' => $model->empresa_idempresa]);
         }
 
         return $this->render('update', [
@@ -96,29 +98,31 @@ class OfertaController extends Controller
     }
 
     /**
-     * Deletes an existing Oferta model.
+     * Deletes an existing Usuario model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $idusuario
+     * @param integer $empresa_idempresa
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($idusuario, $empresa_idempresa)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($idusuario, $empresa_idempresa)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Oferta model based on its primary key value.
+     * Finds the Usuario model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Oferta the loaded model
+     * @param integer $idusuario
+     * @param integer $empresa_idempresa
+     * @return Usuario the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($idusuario, $empresa_idempresa)
     {
-        if (($model = Oferta::findOne($id)) !== null) {
+        if (($model = Usuario::findOne(['idusuario' => $idusuario, 'empresa_idempresa' => $empresa_idempresa])) !== null) {
             return $model;
         }
 

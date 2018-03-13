@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Oferta;
+use app\models\Candidato;
 
 /**
- * OfertaSearch represents the model behind the search form of `app\models\Oferta`.
+ * CandidatoSearch represents the model behind the search form of `app\models\Candidato`.
  */
-class OfertaSearch extends Oferta
+class CandidatoSearch extends Candidato
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class OfertaSearch extends Oferta
     public function rules()
     {
         return [
-            [['idoferta'], 'integer'],
-            [['titulo', 'descripcion'], 'safe'],
+            [['idcandidato'], 'integer'],
+            [['nombre', 'apellido', 'fechaNac', 'titulo', 'contrasenha', 'nacionalidad', 'correoElectronico', 'sexo'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class OfertaSearch extends Oferta
      */
     public function search($params)
     {
-        $query = Oferta::find();
+        $query = Candidato::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,17 @@ class OfertaSearch extends Oferta
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idoferta' => $this->idoferta,
+            'idcandidato' => $this->idcandidato,
+            'fechaNac' => $this->fechaNac,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'apellido', $this->apellido])
+            ->andFilterWhere(['like', 'titulo', $this->titulo])
+            ->andFilterWhere(['like', 'contrasenha', $this->contrasenha])
+            ->andFilterWhere(['like', 'nacionalidad', $this->nacionalidad])
+            ->andFilterWhere(['like', 'correoElectronico', $this->correoElectronico])
+            ->andFilterWhere(['like', 'sexo', $this->sexo]);
 
         return $dataProvider;
     }

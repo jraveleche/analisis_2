@@ -14,27 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'descripcion')->textarea(['rows' => 10]) ?>
-
-    <?= $form->field($model, 'puestosVacantes')->textInput() ?>
-
-    <?= $form->field($model, 'tiempoContratacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'nivelExperiencia')->textInput(['maxlength' => true]) ?>
-
-    
-    <?php
-		echo $form->field($model, 'genero')->dropDownList(
-            ['0' => 'Masculino', '1' => 'Femenino']
-    ); ?>
-
-    <?= $form->field($model, 'salarioMInimo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'salarioMaximo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'escolaridad')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'empresa_idempresa')->textInput() ?>
+    <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

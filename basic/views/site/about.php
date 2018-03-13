@@ -4,14 +4,15 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Nosotros';
+$this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        Somos una empresa que se dedica a la publicacion de ofertas laborales en Guatemala.
+        This is the About page. You may modify the following file to customize its content:
     </p>
 
+    <code><?= __FILE__ ?></code>
 </div>

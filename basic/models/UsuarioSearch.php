@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Oferta;
+use app\models\Usuario;
 
 /**
- * OfertaSearch represents the model behind the search form of `app\models\Oferta`.
+ * UsuarioSearch represents the model behind the search form of `app\models\Usuario`.
  */
-class OfertaSearch extends Oferta
+class UsuarioSearch extends Usuario
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class OfertaSearch extends Oferta
     public function rules()
     {
         return [
-            [['idoferta'], 'integer'],
-            [['titulo', 'descripcion'], 'safe'],
+            [['idusuario', 'empresa_idempresa'], 'integer'],
+            [['nombre', 'apellido', 'nickname'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class OfertaSearch extends Oferta
      */
     public function search($params)
     {
-        $query = Oferta::find();
+        $query = Usuario::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,13 @@ class OfertaSearch extends Oferta
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idoferta' => $this->idoferta,
+            'idusuario' => $this->idusuario,
+            'empresa_idempresa' => $this->empresa_idempresa,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'apellido', $this->apellido])
+            ->andFilterWhere(['like', 'nickname', $this->nickname]);
 
         return $dataProvider;
     }
